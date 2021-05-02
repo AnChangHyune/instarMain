@@ -75,41 +75,42 @@
       <div class="item-bt-1-not-last-child">
         <!-- 게시물 아이템, first -->
         <div class="px-4 py-8">
-          <a class="hover:underline cursor-pointer">
+          <a class="hover:underline cursor-pointer" href="detail?id=${article.id}">
             <span class="badge badge-outline">제목</span>
             <div class="line-clamp-3">
               ${article.title}
             </div>
           </a>
           <div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-            <a href="#" class="row-span-7">
+            <a href="detail?id=${article.id}" class="row-span-7">
               <img class="rounded" src="https://i.pravatar.cc/250?img=37" alt="">
             </a>
 
-            <a href="#" class="hover:underline">
+            <a>
               <span class="badge badge-primary">번호</span>
               <span>${article.id}</span>
             </a>
-
-            <a href="#" class="cursor-pointer hover:underline">
-              <span class="badge badge-accent">작성자</span>
-              <span>홍길동</span>
+            
+             <a>
+              <span class="badge badge-primary">작성자</span>
+              <span>${article.extra__writerName}</span>
             </a>
+            
 
-            <a href="#" class="hover:underline">
+            <a>
               <span class="badge">등록날짜</span>
               <span class="text-gray-600 text-light">${article.regDate}</span>
             </a>
 
-            <a href="#" class="hover:underline">
+            <a>
               <span class="badge">수정날짜</span>
               <span class="text-gray-600 text-light">${article.updateDate}</span>
             </a>
             
-            <a class="mt-3 hover:underline cursor-pointer col-span-1 sm:col-span-2 xl:col-span-3">
+            <a class="mt-3 hover:underline cursor-pointer col-span-1 sm:col-span-2 xl:col-span-3" href="detail?id=${article.id}">
               <span class="badge badge-outline">본문</span>
               <div class="line-clamp-3">
-                ${article.body}
+               	 ${article.body}
               </div>
             </a>
           </div>

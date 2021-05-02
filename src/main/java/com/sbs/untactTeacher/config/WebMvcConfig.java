@@ -23,17 +23,20 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(beforeActionInterceptor)
-				.addPathPatterns("/**")
-				.excludePathPatterns("/resource/**")
+				.addPathPatterns("/**").excludePathPatterns("/resource/**")
 				.excludePathPatterns("/erroe");
-		
+
 		registry.addInterceptor(needToLoginInterceptor)
 				.addPathPatterns("/mpaUsr/article/write")
 				.addPathPatterns("/mpaUsr/article/doWrite")
 				.addPathPatterns("/mpaUsr/article/doDelete")
 				.addPathPatterns("/mpaUsr/article/modify")
-				.addPathPatterns("/mpaUsr/article/doModfiy");
-		
+				.addPathPatterns("/mpaUsr/article/doModify")
+				.addPathPatterns("/mpaUsr/member/modify")
+				.addPathPatterns("/mpaUsr/member/doModify")
+				.addPathPatterns("/mpaUsr/member/checkPassword")
+				.addPathPatterns("/mpaUsr/member/doCheckPassword");
+
 		registry.addInterceptor(needToLogoutInterceptor)
 				.addPathPatterns("/mpaUsr/member/findLoginId")
 				.addPathPatterns("/mpaUsr/member/doFindLoginId")

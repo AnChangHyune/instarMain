@@ -1,12 +1,12 @@
 package com.sbs.untactTeacher.util;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -58,23 +58,7 @@ public class Util {
 		return map;
 	}
 
-	public static int getAsInt(Object object, int defaultValue) {
-		if (object instanceof BigInteger) {
-			return ((BigInteger) object).intValue();
-		} else if (object instanceof Double) {
-			return (int) Math.floor((double) object);
-		} else if (object instanceof Float) {
-			return (int) Math.floor((float) object);
-		} else if (object instanceof Long) {
-			return (int) object;
-		} else if (object instanceof Integer) {
-			return (int) object;
-		} else if (object instanceof String) {
-			return Integer.parseInt((String) object);
-		}
-
-		return defaultValue;
-	}
+	
 
 	public static String msgAndBack(String msg) {
 		StringBuilder sb = new StringBuilder();
@@ -386,5 +370,47 @@ public class Util {
 		} catch (Exception ex) {
 			return "";
 		}
+	}
+
+	public static String getDateStrLater(long seconds) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		String dateStr = format.format(System.currentTimeMillis() + seconds * 1000);
+
+		return dateStr;
+	}
+
+	public static int getAsInt(Object object) {
+		return getAsInt(object, -1);
+	}
+
+	public static int getAsInt(Object object, int defaultValue) {
+		if (object instanceof BigInteger) {
+			return ((BigInteger) object).intValue();
+		} else if (object instanceof String) {
+			try {
+				return Integer.parseInt((String) object);				
+			} catch (NumberFormatException e ) {
+				return defaultValue;
+			}
+		} else if (object instanceof Long) {
+			return (int) ((long) object);
+		} else if (object instanceof Integer) {
+			return (int) object;
+		}
+
+		return defaultValue;
+	}
+
+	public static String getAsStr(Object object, String defaultValue) {
+		if (object == null) {
+			return defaultValue;
+		}
+
+		if (object instanceof String) {
+			return (String) (object);
+		}
+
+		return object.toString();
 	}
 }

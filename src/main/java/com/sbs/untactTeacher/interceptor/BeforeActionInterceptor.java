@@ -22,31 +22,37 @@ public class BeforeActionInterceptor implements HandlerInterceptor{
 	
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
-		HttpSession session = req.getSession();
-		
-		Map<String, String> paramMap = Util.getParamMap(req);
-		
-		Member loginedMember = null;
-		
-		int loginedMemberId = 0;
-		
-		if(session.getAttribute("loginedMemberId") != null) {
-			loginedMemberId = (int) session.getAttribute("loginedMemberId");
-		}
-		
-		if(loginedMemberId != 0) {
-			loginedMember = memberService.getMemberById(loginedMemberId);
-		}
-		
-		String currentUrl = req.getRequestURI();
-		String queryString = req.getQueryString();
-		
-		if(queryString != null && queryString.length() > 0) {
-			currentUrl += "?" + queryString;
-		}
-		
-		req.setAttribute("rq", new Rq(loginedMember,currentUrl, paramMap));
-		
-		return HandlerInterceptor.super.preHandle(req, resp, handler);
-	}
+
+        Map<String, String> paramMap = Util.getParamMap(req);
+
+        HttpSession session = req.getSession();
+
+        Member loginedMember = null;
+        int loginedMemberId = 0;
+
+        if (session.getAttribute("loginedMemberId") != null) {
+            loginedMemberId = (int) session.getAttribute("loginedMemberId");
+        }
+
+        if (loginedMemberId != 0) {
+            loginedMember = memberService.getMemberById(loginedMemberId);
+        }
+
+        String currentUrl = req.getRequestURI();
+        String queryString = req.getQueryString();
+
+        if (queryString != null && queryString.length() > 0) {
+            currentUrl += "?" + queryString;
+        }
+
+        boolean needToChangePassword = false;
+
+        if ( loginedMember != null ) {
+            needToChangePassword = memberService.needToChangePassword(loginedMember.getId());
+        }
+
+        req.setAttribute("rq", new Rq(loginedMember, currentUrl, paramMap, needToChangePassword));
+
+        return HandlerInterceptor.super.preHandle(req, resp, handler);
+    }
 }

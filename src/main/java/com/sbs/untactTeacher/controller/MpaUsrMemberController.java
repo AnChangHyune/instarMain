@@ -24,41 +24,64 @@ public class MpaUsrMemberController {
 		return "mpaUsr/member/mypage";
 	}
 
-	@RequestMapping("/mpaUsr/member/modify")
-	public String showModify(HttpServletRequest req) {
-		return "mpaUsr/member/modify";
-	}
+	 @RequestMapping("/mpaUsr/member/modify")
+	    public String showModify(HttpServletRequest req,  String checkPasswordAuthCode) {
 
-	@RequestMapping("/mpaUsr/member/doModify")
-	public String doModify(HttpServletRequest req, String loginPw, String name, String nickname, String cellphoneNo,
-			String email) {
+	        Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
+	        ResultData checkValidCheckPasswordAuthCodeResultData = memberService
+	                .checkValidCheckPasswordAuthCode(loginedMember.getId(), checkPasswordAuthCode);
 
-		if (loginPw != null && loginPw.trim().length() == 0) {
-			loginPw = null;
-		}
+	        if ( checkValidCheckPasswordAuthCodeResultData.isFail() ) {
+	            return Util.msgAndBack(req, checkValidCheckPasswordAuthCodeResultData.getMsg());
+	        }
 
-		int id = ((Rq) req.getAttribute("rq")).getLoginedMemberId();
-		ResultData modifyRd = memberService.modify(id, loginPw, name, nickname, cellphoneNo, email);
+	        return "mpaUsr/member/modify";
+	    }
 
-		if (modifyRd.isFail()) {
-			return Util.msgAndBack(req, modifyRd.getMsg());
-		}
-		return Util.msgAndReplace(req, modifyRd.getMsg(), "/");
-	}
-	
+	    @RequestMapping("/mpaUsr/member/doModify")
+	    public String doModify(HttpServletRequest req, String loginPw, String name, String
+	            nickname, String cellphoneNo, String email, String checkPasswordAuthCode) {
+
+	        Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
+	        ResultData checkValidCheckPasswordAuthCodeResultData = memberService
+	                .checkValidCheckPasswordAuthCode(loginedMember.getId(), checkPasswordAuthCode);
+
+	        if ( checkValidCheckPasswordAuthCodeResultData.isFail() ) {
+	            return Util.msgAndBack(req, checkValidCheckPasswordAuthCodeResultData.getMsg());
+	        }
+
+	        if (loginPw != null && loginPw.trim().length() == 0) {
+	            loginPw = null;
+	        }
+
+	        int id = ((Rq) req.getAttribute("rq")).getLoginedMemberId();
+	        ResultData modifyRd = memberService.modify(id, loginPw, name, nickname, cellphoneNo, email);
+
+	        if (modifyRd.isFail()) {
+	            return Util.msgAndBack(req, modifyRd.getMsg());
+	        }
+
+	        return Util.msgAndReplace(req, modifyRd.getMsg(), "/");
+	    }
+
 	@RequestMapping("/mpaUsr/member/checkPassword")
 	public String showCheckPassword(HttpServletRequest req) {
 		return "mpaUsr/member/checkPassword";
 	}
-	
+
 	@RequestMapping("/mpaUsr/member/doCheckPassword")
 	public String doCheckPassword(HttpServletRequest req, String loginPw, String redirectUri) {
 		Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
-		
-		if(loginedMember.getLoginPw().equals(loginPw) == false) {
+
+		if (loginedMember.getLoginPw().equals(loginPw) == false) {
 			return Util.msgAndBack(req, "비밀번호가 일치하지 않습니다.");
 		}
-		return Util.msgAndReplace(req, "", "modify");
+
+		String authCode = memberService.genCheckPasswordAuthCode(loginedMember.getId());
+
+		redirectUri = Util.getNewUri(redirectUri, "checkPasswordAuthCode", authCode);
+
+		return Util.msgAndReplace(req, "", redirectUri);
 	}
 
 	@RequestMapping("/mpaUsr/member/findLoginPw")
@@ -147,6 +170,20 @@ public class MpaUsrMemberController {
 		session.setAttribute("loginedMemberId", member.getId());
 
 		String msg = member.getNickname() + "님 환영합니다.";
+
+		boolean needToChangePassword = memberService.needToChangePassword(member.getId());
+
+		if (needToChangePassword) {
+			msg = "현재 비밀번호를 사용한지" + memberService.getNeedToChangePasswordFreeDays() + "일이 지났습니다. 비밀번호를 변경해주세요.";
+			redirectUri = "/mpaUsr/member/mypage";
+		}
+
+		boolean isUsingTempPassword = memberService.usingTempPassword(member.getId());
+
+		if (isUsingTempPassword) {
+			msg = "임시 비밀번호를 변경해주세요.";
+			redirectUri = "/mpaUsr/member/mypage";
+		}
 
 		return Util.msgAndReplace(req, msg, redirectUri);
 	}

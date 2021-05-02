@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.untactTeacher.dto.Article;
 import com.sbs.untactTeacher.dto.Board;
-
+import com.sbs.untactTeacher.dto.Reply;
 import com.sbs.untactTeacher.dto.ResultData;
 import com.sbs.untactTeacher.service.ArticleService;
-
 import com.sbs.untactTeacher.util.Util;
 
 
@@ -28,7 +27,7 @@ public class MpaUsrArticleController {
 	
 
 	@RequestMapping("/mpaUsr/article/detail")
-	public String showDetail(HttpServletRequest req, int id) {
+	public String showDetail(HttpServletRequest req, int id, String body) {
 		Article article = articleService.getForPrintArticleById(id);
 		
 		if(article == null) {

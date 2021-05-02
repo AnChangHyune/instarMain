@@ -37,7 +37,7 @@
 			<div class="card-title">
 				<a href="javascript:history.back();" class="cursor-pointer"> <i
 					class="fas fa-chevron-left"></i>
-				</a> <span>로그인</span>
+				</a> <span>비밀번호 확인</span>
 
 			</div>
 			<div class="px-4 py-8">
