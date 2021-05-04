@@ -48,15 +48,16 @@
 					onsubmit="ArticleWrite__submitForm(this); return false;"
 					method="POST">
 					<input type="hidden" name="boardId" value="${board.id}" />
-				
+
 					<div class="form-control">
-						<label class="label cursor-pointer"> 작성자 </label>
-						<div class="plain-text">${member.nickname}</div>
+					
+						
 						<label class="cursor-pointer label"> 제목 </label> <input
 							type="text" class="input input-bordered w-full" name="title"
 							placeholder="제목" maxlength="50" /> <label
 							class="cursor-pointer label"> 내용 </label>
-						<textarea class="textarea textarea-bordered w-full h-40" name="body" placeholder="내용" maxlength="2000"></textarea>
+						<textarea class="textarea textarea-bordered w-full h-40"
+							name="body" placeholder="내용" maxlength="2000"></textarea>
 
 						<div class="mt-4 btn-wrap gap-1">
 							<button type="submit" class="btn btn-sm btn-primary mb-1">

@@ -10,16 +10,14 @@ public interface MemberDao {
 
 	Member getMemberByLoginId(@Param("loginId") String loginId);
 
-	void join(@Param("loginId") String loginId, @Param("loginPw") String loginPw, @Param("name") String name,
-			@Param("nickname") String nickname, @Param("cellphoneNo") String cellphoneNo, @Param("email") String email);
+    Member getMemberById(@Param("id") int id);
 
-	int getLastInsertId();
+    void join(@Param("loginId") String loginId, @Param("loginPw") String loginPw, @Param("name") String name, @Param("nickname") String nickname, @Param("cellphoneNo") String cellphoneNo, @Param("email") String email);
 
-	Member getMemberById(@Param("id") int id);
+    void modify(@Param("id") int id, @Param("loginPw") String loginPw, @Param("name") String name, @Param("nickname") String nickname, @Param("cellphoneNo") String cellphoneNo, @Param("email") String email);
 
-	Member getMemberByNameAndEmail(@Param("email") String email, @Param("name") String name);
+    int getLastInsertId();
 
-	void modify(@Param("id") int id, @Param("loginPw") String loginPw, @Param("name") String name,
-			@Param("nickname") String nickname, @Param("cellphoneNo") String cellphoneNo, @Param("email") String email);
+    Member getMemberByNameAndEmail(@Param("name") String name, @Param("email") String email);
 
 }

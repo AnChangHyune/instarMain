@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.sbs.untactTeacher.dao.ArticleDao;
 import com.sbs.untactTeacher.dto.Article;
 import com.sbs.untactTeacher.dto.Board;
-import com.sbs.untactTeacher.dto.Reply;
 import com.sbs.untactTeacher.dto.ResultData;
 
 @Service
@@ -91,7 +90,4 @@ public class ArticleService {
 	}
 
 
-	public Reply getReplyById(int id, String body) {
-		return articleDao.getReplyById(id,body);
-	}
 }

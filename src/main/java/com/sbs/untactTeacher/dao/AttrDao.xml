@@ -95,7 +95,6 @@
             <id property="writer" column="extra__writer" />
         </association>
     </resultMap>
-
 </mapper>
 
 

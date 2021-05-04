@@ -68,7 +68,7 @@ html > body {
   padding-bottom:5px;
   margin-top:20px;
   margin-bottom:15px;
-  border:solid black;
+  border:solid #5555;
   border-width:2px 0;
 }
 
@@ -345,7 +345,7 @@ body {
 
 .fullscroll-container .section-footer {
     width: 100vw;
-    height: 30vh;
+    height: 15vh;
     font-size: 4vw;
     background: #444;
     color: #fff;

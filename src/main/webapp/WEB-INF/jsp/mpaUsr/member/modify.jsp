@@ -90,7 +90,7 @@
 			<div class="card-title">
 				<a href="javascript:history.back();" class="cursor-pointer"> <i
 					class="fas fa-chevron-left"></i>
-				</a> <span>회원가입</span>
+				</a> <span>회원정보 수정</span>
 
 			</div>
 			<div class="px-4 py-8">
@@ -98,6 +98,7 @@
 					onsubmit=" MemberModify__submitForm(this); return false;"
 					method="POST">
 					<input type="hidden" name="loginPw" />
+					<input type="hidden" name="checkPasswordAuthCode" value="${param.checkPasswordAuthCode}" />
 
 					<div class="form-control">
 						<label class="label cursor-pointer"> 아이디 </label>

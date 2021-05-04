@@ -6,45 +6,45 @@
 <mapper namespace="com.sbs.untactTeacher.dao.MemberDao">
 
 
-	<select id="getMemberByLoginId" resultType="Member">
-		SELECT *
-		FROM `member` AS M
-		WHERE M.loginId = #{loginId}
-		AND M.delStatus = 0
-	</select>
+	 <select id="getMemberByLoginId" resultType="Member">
+        SELECT *
+        FROM `member` AS M
+        WHERE M.loginId = #{loginId}
+        AND M.delStatus = 0
+    </select>
 
-	<select id="getMemberByNameAndEmail" resultType="Member">
-		SELECT *
-		FROM `member` AS M
-		WHERE M.name = #{name}
-		AND M.email = #{email}
-		AND M.delStatus = 0
-	</select>
+    <select id="getMemberByNameAndEmail" resultType="Member">
+        SELECT *
+        FROM `member` AS M
+        WHERE M.name = #{name}
+        AND M.email = #{email}
+        AND M.delStatus = 0
+    </select>
 
-	<select id="getMemberById" resultType="Member">
-		SELECT *
-		FROM `member` AS M
-		WHERE M.id = #{id}
-		AND M.delStatus = 0
-	</select>
+    <select id="getMemberById" resultType="Member">
+        SELECT *
+        FROM `member` AS M
+        WHERE M.id = #{id}
+        AND M.delStatus = 0
+    </select>
 
-	<select id="getLastInsertId" resultType="int">
-		SELECT LAST_INSERT_ID()
-	</select>
+    <select id="getLastInsertId" resultType="int">
+        SELECT LAST_INSERT_ID()
+    </select>
 
-	<insert id="join">
-		INSERT INTO `member`
-		SET regDate = NOW(),
-		updateDate = NOW(),
-		loginId = #{loginId},
-		loginPw = #{loginPw},
-		name = #{name},
-		nickname = #{nickname},
-		cellphoneNo = #{cellphoneNo},
-		email = #{email}
-	</insert>
+    <insert id="join">
+        INSERT INTO `member`
+        SET regDate = NOW(),
+        updateDate = NOW(),
+        loginId = #{loginId},
+        loginPw = #{loginPw},
+        name = #{name},
+        nickname = #{nickname},
+        cellphoneNo = #{cellphoneNo},
+        email = #{email}
+    </insert>
 
-	 <update id="modify">
+    <update id="modify">
         UPDATE `member`
         <set>
             updateDate = NOW(),

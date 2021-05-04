@@ -73,9 +73,9 @@
 							<a href="join" class="btn btn-sm mb-1" title="자세히 보기"> <span><i
 									class="fas fa-user-plus"></i></span> &nbsp; <span>회원가입</span>
 							</a> <a href="../member/findLoginId" type="submit"
-								class="btn btn-link btn-sm mb-1"> <span>아이디 찾기</span>
+								class="btn btn-link btn-sm mb-1" style="font-size: 10px;"> <span>아이디 찾기</span>
 							</a> <a href="../member/findLoginPw" type="submit"
-								class="btn btn-link btn-sm mb-1"> <span>비밀번호 찾기</span>
+								class="btn btn-link btn-sm mb-1" style="font-size: 10px;"> <span>비밀번호 찾기</span>
 							</a>
 						</div>
 					</div>

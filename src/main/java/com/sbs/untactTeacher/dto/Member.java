@@ -1,5 +1,7 @@
 package com.sbs.untactTeacher.dto;
 
+import com.sbs.untactTeacher.util.Util;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +24,9 @@ public class Member {
     
     public String getAuthLevelName() {
     	return "일반회원";
+    }
+    
+    public String toJsonStr() {
+        return Util.toJsonStr(this);
     }
 }

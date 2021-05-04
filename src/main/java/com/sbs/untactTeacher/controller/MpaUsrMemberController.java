@@ -13,7 +13,10 @@ import com.sbs.untactTeacher.dto.Rq;
 import com.sbs.untactTeacher.service.MemberService;
 import com.sbs.untactTeacher.util.Util;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class MpaUsrMemberController {
 
 	@Autowired
@@ -24,45 +27,45 @@ public class MpaUsrMemberController {
 		return "mpaUsr/member/mypage";
 	}
 
-	 @RequestMapping("/mpaUsr/member/modify")
-	    public String showModify(HttpServletRequest req,  String checkPasswordAuthCode) {
+	@RequestMapping("/mpaUsr/member/modify")
+	public String showModify(HttpServletRequest req, String checkPasswordAuthCode) {
 
-	        Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
-	        ResultData checkValidCheckPasswordAuthCodeResultData = memberService
-	                .checkValidCheckPasswordAuthCode(loginedMember.getId(), checkPasswordAuthCode);
+		Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
+		ResultData checkValidCheckPasswordAuthCodeResultData = memberService
+				.checkValidCheckPasswordAuthCode(loginedMember.getId(), checkPasswordAuthCode);
 
-	        if ( checkValidCheckPasswordAuthCodeResultData.isFail() ) {
-	            return Util.msgAndBack(req, checkValidCheckPasswordAuthCodeResultData.getMsg());
-	        }
+		if (checkValidCheckPasswordAuthCodeResultData.isFail()) {
+			return Util.msgAndBack(req, checkValidCheckPasswordAuthCodeResultData.getMsg());
+		}
 
-	        return "mpaUsr/member/modify";
-	    }
+		return "mpaUsr/member/modify";
+	}
 
-	    @RequestMapping("/mpaUsr/member/doModify")
-	    public String doModify(HttpServletRequest req, String loginPw, String name, String
-	            nickname, String cellphoneNo, String email, String checkPasswordAuthCode) {
+	@RequestMapping("/mpaUsr/member/doModify")
+	public String doModify(HttpServletRequest req, String loginPw, String name, String nickname, String cellphoneNo,
+			String email, String checkPasswordAuthCode) {
 
-	        Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
-	        ResultData checkValidCheckPasswordAuthCodeResultData = memberService
-	                .checkValidCheckPasswordAuthCode(loginedMember.getId(), checkPasswordAuthCode);
+		Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
+		ResultData checkValidCheckPasswordAuthCodeResultData = memberService
+				.checkValidCheckPasswordAuthCode(loginedMember.getId(), checkPasswordAuthCode);
 
-	        if ( checkValidCheckPasswordAuthCodeResultData.isFail() ) {
-	            return Util.msgAndBack(req, checkValidCheckPasswordAuthCodeResultData.getMsg());
-	        }
+		if (checkValidCheckPasswordAuthCodeResultData.isFail()) {
+			return Util.msgAndBack(req, checkValidCheckPasswordAuthCodeResultData.getMsg());
+		}
 
-	        if (loginPw != null && loginPw.trim().length() == 0) {
-	            loginPw = null;
-	        }
+		if (loginPw != null && loginPw.trim().length() == 0) {
+			loginPw = null;
+		}
 
-	        int id = ((Rq) req.getAttribute("rq")).getLoginedMemberId();
-	        ResultData modifyRd = memberService.modify(id, loginPw, name, nickname, cellphoneNo, email);
+		int id = ((Rq) req.getAttribute("rq")).getLoginedMemberId();
+		ResultData modifyRd = memberService.modify(id, loginPw, name, nickname, cellphoneNo, email);
 
-	        if (modifyRd.isFail()) {
-	            return Util.msgAndBack(req, modifyRd.getMsg());
-	        }
+		if (modifyRd.isFail()) {
+			return Util.msgAndBack(req, modifyRd.getMsg());
+		}
 
-	        return Util.msgAndReplace(req, modifyRd.getMsg(), "/");
-	    }
+		return Util.msgAndReplace(req, modifyRd.getMsg(), "/");
+	}
 
 	@RequestMapping("/mpaUsr/member/checkPassword")
 	public String showCheckPassword(HttpServletRequest req) {
