@@ -7,6 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 
 <script>
+
 	let MemberJoin__submitFormDone = false;
 	function MemberJoin__submitForm(form) {
 
@@ -22,11 +23,11 @@
 
 			return;
 		}
-
+		
 		form.loginPwInput.value = form.loginPwInput.value.trim();
 
-		if (form.loginPwInput.value.length < 8) {
-			alert('비밀번호는 8자 이상으로 입력해주세요.');
+		if (form.loginPwInput.value.length == 0) {
+			alert('비밀번호를 입력해주세요.');
 			form.loginPwInput.focus();
 
 			return;
@@ -91,6 +92,8 @@
 		form.submit();
 		MemberJoin__submitFormDone = true;
 	}
+	
+	
 </script>
 <div class="section section-join">
 	<div class="container mx-auto">

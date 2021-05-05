@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import com.sbs.untactTeacher.dto.Article;
 import com.sbs.untactTeacher.dto.Board;
 import com.sbs.untactTeacher.dto.ResultData;
@@ -23,6 +24,9 @@ public class MpaUsrArticleController {
 
 	@Autowired
 	private ArticleService articleService;
+	
+	
+
 	
 
 	@RequestMapping("/mpaUsr/article/detail")
@@ -55,8 +59,8 @@ public class MpaUsrArticleController {
 	}
 	
 	@RequestMapping("/mpaUsr/article/doWrite")
-	public String doWrite(HttpServletRequest req, int boardId, String title, String body) {
-
+	public String doWrite(HttpServletRequest req, int boardId,String title, String body) {
+		
 		if (Util.isEmpty(title)) {
 			return Util.msgAndBack(req, "제목을 입력해주세요.");
 		}
@@ -65,7 +69,7 @@ public class MpaUsrArticleController {
 			return Util.msgAndBack(req, "내용을 입력해주세요.");
 		}
 		
-		int memberId = 3; //임시
+		int memberId = 3;//임시
 
 		ResultData WriteRd =  articleService.writeArticle(boardId, memberId,title, body);
 		
@@ -74,6 +78,7 @@ public class MpaUsrArticleController {
 		}
 		
 		String replaceUri = "detail?id="+WriteRd.getBody().get("id");
+		
 		
 		return Util.msgAndReplace(req, WriteRd.getMsg(), replaceUri);
 	}

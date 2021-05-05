@@ -31,12 +31,12 @@
                     </a>
 
                     <a href="#" class="order-4 hover:underline">
-                        <span class="badge">등록날짜</span>
+                        <span class="badge">회원가입 날짜</span>
                         <span class="text-gray-600 text-light">${rq.loginedMember.regDate}</span>
                     </a>
 
                     <a href="#" class="order-5 hover:underline">
-                        <span class="badge">수정날짜</span>
+                        <span class="badge">회원수정 날짜</span>
                         <span class="text-gray-600 text-light">${rq.loginedMember.updateDate}</span>
                     </a>
 
@@ -70,9 +70,6 @@
                         </span>
                     </a>
                 </div>
-            </div>
-            <div class="footer" style="width: 100%; height: 80px; background: #5555; margin-top:160px; color: #fff; text-align: center; font-size: 50px;">
-            	<a href="#">FOOTER</a>
             </div>
 			</div>
 		</div>

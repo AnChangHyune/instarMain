@@ -6,7 +6,7 @@
 <mapper namespace="com.sbs.untactTeacher.dao.MemberDao">
 
 
-	 <select id="getMemberByLoginId" resultType="Member">
+	<select id="getMemberByLoginId" resultType="Member">
         SELECT *
         FROM `member` AS M
         WHERE M.loginId = #{loginId}
