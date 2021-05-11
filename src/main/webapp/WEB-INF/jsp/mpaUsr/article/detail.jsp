@@ -6,16 +6,19 @@
 
 
 <div class="section section-article-detail">
-	<div class="container mx-auto">
+	<div class="container mx-auto mt-12">
+		<div class="top">
+			<a class="hero" href="/">INSTA</a>
+		</div>
 		<div class="card bordered shadow-lg item-bt-1-not-last-child">
-			<div class="card-title">
+			<div class="card-title mt-10">
 				<a href="list?boardId=${board.id}" class="cursor-pointer"> <i
 					class="fas fa-chevron-left"></i>
 				</a> <span>게시물 상세페이지</span>
 			</div>
 			<div>
 
-				<div class="px-4 py-8">
+				<div class="px-4 py-8 mt-10">
 
 					<div
 						style="width: 100%; height: 100%; display: flex; align-items: center;">
@@ -45,9 +48,8 @@
 							<i class="far fa-heart">좋아요</i>
 							<div class="flex-grow"></div>
 							<span>Number : </span> <span class="text-gray-400 text-light">${article.id}</span>
-							<span class="ml-3">
-							</span> <span class="ml-3"> <span>Views:</span> <span
-								class="text-gray-400 text-light">60k</span>
+							<span class="ml-3"> </span> <span class="ml-3"> <span>Views:</span>
+								<span class="text-gray-400 text-light">60k</span>
 							</span>
 						</div>
 					</div>

@@ -39,6 +39,9 @@
 		MemberLogin__submitFormDone = true;
 	}
 </script>
+<div class="top">
+	<a class="hero" href="/">INSTA</a>
+</div>
 <div class="section section-login">
 	<div class="container mx-auto">
 		<div class="card bordered shadow-lg item-bt-1-not-last-child">

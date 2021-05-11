@@ -37,14 +37,10 @@
 	<div class="wrap" id="wrap">
 
 		<header class="top-header">
-			<input type="checkbox" id="hamburger"> 
-			
-				<label for="hamburger">
-					<span></span> 
-					<span></span> 
-					<span></span>
-				</label>
-				
+			<input type="checkbox" id="hamburger"> <label for="hamburger">
+				<span></span> <span></span> <span></span>
+			</label>
+
 
 			<div class="menu_box">
 				<div class="mt-20">
@@ -52,45 +48,52 @@
 					<nav class="menu-box-1">
 						<div class="mt-10">
 							<div class="mt-5 menu-bar">
-								<a href="../article/list?boardId=1">
-									<span>&nbsp;NOTICE</span>
+								<a href="../article/list?boardId=1"> <span>&nbsp;NOTICE</span>
 								</a>
 							</div>
-					
+
 							<div class="mt-5 menu-bar">
-								<a href="../article/list?boardId=2">
-									<span>&nbsp;FREE</span>
+								<a href="../article/list?boardId=2"> <span>&nbsp;FREE</span>
 								</a>
 							</div>
-				
-						
-						<c:if test="${rq.isLogined()}">
-						
-								<div class="mt-5 menu-bar">
-									<a href="../member/doLogout">
-										<span class="hidden md:block">&nbsp;LOGOUT</span>
-									</a>
-								</div>
-								<div class="mt-5 menu-bar">
-									<a href="../member/mypage">
-										<span class="hidden md:block">&nbsp; ${rq.loginedMember.nickname}님</span>
-									</a>
-								</div>
-						</c:if>
-						<c:if test="${rq.notLogined}">
+							
 							<div class="mt-5 menu-bar">
-								<a href="${rq.loginPageUri}">
-									<span class="hidden md:block">&nbsp;LOGIN</span>
+								<a href="/"> <span>&nbsp;HOME</span>
 								</a>
 							</div>
-							<div class="mt-5 menu-bar">
-								<a href="../member/join">
-									<span class="hidden md:block">&nbsp;JOIN</span>
-								</a>
-							</div>
-						</c:if>
-					</div>
-				</nav>
+
+						</div>
+					</nav>
 				</div>
+			</div>
+			<div class="main-header">
+				<c:if test="${rq.logined}">
+					<div>
+						<a href="../member/doLogout" class="h-full flex items-center px-2">
+							<span> <i class="fas fa-sign-out-alt"></i>
+						</span> <span class="hidden md:block">&nbsp;LOGOUT</span>
+						</a>
+					</div>
+					<div>
+						<a href="../member/mypage" class="h-full flex items-center px-2">
+							<span> <i class="fas fa-user-circle"></i>
+						</span> <span class="hidden md:block">&nbsp;${rq.loginedMember.nickname}님</span>
+						</a>
+					</div>
+				</c:if>
+				<c:if test="${rq.notLogined}">
+					<div>
+						<a href="${rq.loginPageUri}" class="h-full flex items-center px-2">
+							<span> <i class="fas fa-sign-in-alt"></i>
+						</span> <span class="hidden md:block">&nbsp;LOGIN</span>
+						</a>
+					</div>
+					<div>
+						<a href="../member/join" class="h-full flex items-center px-2">
+							<span> <i class="fas fa-address-card"></i>
+						</span> <span class="hidden md:block">&nbsp;JOIN</span>
+						</a>
+					</div>
+				</c:if>
 			</div>
 		</header>

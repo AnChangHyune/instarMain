@@ -4,7 +4,9 @@
 <%@ page import="com.sbs.untactTeacher.util.Util" %>
 
 <%@ include file="../common/head.jspf"%>
-
+<div class="top">
+	<a class="hero" href="/">INSTA</a>
+</div>
 <div class="section section-mypage px-2">
 	<div class="container mx-auto">
 		<div class="card bordered shadow-lg item-bt-1-not-last-child">

@@ -95,6 +95,9 @@
 	
 	
 </script>
+<div class="top">
+	<a class="hero" href="/">INSTA</a>
+</div>
 <div class="section section-join">
 	<div class="container mx-auto">
 		<div class="card bordered shadow-lg item-bt-1-not-last-child">
